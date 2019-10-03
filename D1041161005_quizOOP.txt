@@ -1,0 +1,189 @@
+1. Modifier ---------------------------------------------------------
+
+private long backPressedTime; 
+private Toast backToast; 
+public void increment(View view){
+
+2. Method -----------------------------------------------------------
+
+Toast.makeText(this,"Selamat Datang", Toast.LENGTH_LONG).show();
+backToast.cancel();
+backToast.show();
+Intent intent = getIntent();
+String nama = intent.getStringExtra(Intent.EXTRA_TEXT);
+TextView textView =findViewById(R.id.nama);
+textView.setText("Hallo "+nama);
+TextView textView2 =findViewById(R.id.nomor);
+textView2.setText(nim.substring(nim.length()-2));
+quantity = Integer.parseInt(nim.substring(nim.length()-2));
+
+
+3. Class --------------------------------------------------------
+
+public class WelcomeSplash extends AppCompatActivity {
+    private long backPressedTime;
+    private Toast backToast;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_welcome_splash);
+        Toast.makeText(this,"Selamat Datang", Toast.LENGTH_LONG).show();
+    }
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime+2000>System.currentTimeMillis()){
+            backToast.cancel();
+            super.onBackPressed();
+            return;}else{
+            backToast=Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT);
+            backToast.show();
+        }
+        backPressedTime=System.currentTimeMillis();
+    }
+    public void onSubmit(View view) {
+        EditText namaField = (EditText) findViewById(R.id.nama_field);
+        Editable namaEditable = namaField.getText();
+        String nama = namaEditable.toString();
+        Intent intent = new Intent(WelcomeSplash.this, MainActivity.class);
+        intent.putExtra(intent.EXTRA_TEXT, nama);
+        startActivity(intent);
+        finish();
+
+    }
+
+}
+
+public class MainActivity extends AppCompatActivity {
+    private long backPressedTime;
+    private Toast backToast;
+    int quantity ;
+    String nim = "D1041161005";
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        String nama = intent.getStringExtra(Intent.EXTRA_TEXT);
+
+        TextView textView =findViewById(R.id.nama);
+        textView.setText("Hallo "+nama);
+        TextView textView2 =findViewById(R.id.nomor);
+        textView2.setText(nim.substring(nim.length()-2));
+        quantity = Integer.parseInt(nim.substring(nim.length()-2));
+    }
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime+2000>System.currentTimeMillis()){
+            backToast.cancel();
+            super.onBackPressed();
+            return;}else{
+            backToast=Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT);
+            backToast.show();
+        }
+        backPressedTime=System.currentTimeMillis();
+    }
+    public void increment(View view){
+        if (quantity == 100) {
+            backToast=Toast.makeText(getBaseContext(), "Mencapai Angka Maksimum", Toast.LENGTH_SHORT);
+            backToast.show();
+            return;
+        }
+        quantity = quantity + 1;
+        displayQuantity(quantity);
+    }
+    public void decrement(View view){
+        if (quantity == 0) {
+            backToast=Toast.makeText(getBaseContext(), "Mencapai Angka Minimum", Toast.LENGTH_SHORT);
+            backToast.show();
+            return;
+        }
+        quantity = quantity - 1;
+        displayQuantity(quantity);
+    }
+    private void displayQuantity(int number) {
+        TextView textView2 = (TextView) findViewById(
+                R.id.nomor);
+        textView2.setText("" + number);
+    }
+
+}
+
+4. Function ------------------------------------------------------
+
+public void onSubmit(View view) {
+        EditText namaField = (EditText) findViewById(R.id.nama_field);
+        Editable namaEditable = namaField.getText();
+        String nama = namaEditable.toString();
+        Intent intent = new Intent(WelcomeSplash.this, MainActivity.class);
+        intent.putExtra(intent.EXTRA_TEXT, nama);
+        startActivity(intent);
+        finish();
+    }
+
+public void increment(View view){
+        if (quantity == 100) {
+            backToast=Toast.makeText(getBaseContext(), "Mencapai Angka Maksimum", Toast.LENGTH_SHORT);
+            backToast.show();
+            return;
+        }
+        quantity = quantity + 1;
+        displayQuantity(quantity);
+    }
+
+public void decrement(View view){
+        if (quantity == 0) {
+            backToast=Toast.makeText(getBaseContext(), "Mencapai Angka Minimum", Toast.LENGTH_SHORT);
+            backToast.show();
+            return;
+        }
+        quantity = quantity - 1;
+        displayQuantity(quantity);
+    }
+
+private void displayQuantity(int number) {
+        TextView textView2 = (TextView) findViewById(
+                R.id.nomor);
+        textView2.setText("" + number);
+    }
+
+5. Constructor ----------------------------------------------------
+
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_welcome_splash);
+        Toast.makeText(this,"Selamat Datang", Toast.LENGTH_LONG).show();
+}
+
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        String nama = intent.getStringExtra(Intent.EXTRA_TEXT);
+
+        TextView textView =findViewById(R.id.nama);
+        textView.setText("Hallo "+nama);
+        TextView textView2 =findViewById(R.id.nomor);
+        textView2.setText(nim.substring(nim.length()-2));
+        quantity = Integer.parseInt(nim.substring(nim.length()-2));
+    }
+6. Polimorfisme ---------------------------------------------------
+public interface Vegetarian()
+public class Binatang()
+public class Rusa extends Binatang implements Vegetarian()
+
+7. Inheritance ----------------------------------------------------
+public class WelcomeSplash extends AppCompatActivity {
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    }
+}
+public class MainActivity extends AppCompatActivity {
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    }
+}
